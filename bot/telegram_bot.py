@@ -1,7 +1,7 @@
 import requests
 import json
 
-PROPERTIES = 'telegram_keys'
+PROPERTIES = './bot/telegram_keys'
 
 class TelegramBot():
     def __init__(self):
