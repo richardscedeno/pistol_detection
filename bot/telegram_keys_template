@@ -1,0 +1,6 @@
+{
+	"token": "token_bot",
+	"namebot": "nombre_bot",
+	"channel": "id_canal",
+	"group": "id_grupo"
+}
