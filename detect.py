@@ -4,18 +4,18 @@ import imutils
 
 model = YOLO('./weights/best50.pt')
 
-# video_path = "./data/arm.mp4"
+# video_path = "./data/vid1.mp4"
 # cap = cv2.VideoCapture(video_path)
 cap = cv2.VideoCapture(0)
 
 while cap.isOpened():
     success, frame = cap.read()
 
-    # frame_copy = frame.copy()
-    # frame_copy = imutils.resize(frame_copy, width=300)
+    frame_copy = frame.copy()
+    frame_copy = imutils.resize(frame_copy, width=500)
 
     if success:
-        results = model(frame, conf=0.8, save_crop=True)
+        results = model(frame)
 
         plot_frame = results[0].plot()
 
