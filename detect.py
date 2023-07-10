@@ -1,6 +1,7 @@
 import cv2
 from ultralytics import YOLO
 import imutils
+import funciones
 
 model = YOLO('./weights/best50.pt')
 
@@ -25,6 +26,12 @@ while cap.isOpened():
         plot_frame = results[0].plot()
 
         cv2.imshow("YOLOv8", plot_frame)
+
+        if conf.nelement() != 0:
+            print(f'Tiene datos: {conf.nelement()}')
+            funciones.validate_route()
+        else:
+            print(f'Está vacio: {conf.nelement()}')
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
