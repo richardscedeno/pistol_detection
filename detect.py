@@ -17,6 +17,11 @@ while cap.isOpened():
     if success:
         results = model(frame)
 
+        # Guardando la confidecialidad del tensor
+        conf = results[0].boxes.conf
+        # print(f'conf: {conf}')
+        # print(type(conf))
+
         plot_frame = results[0].plot()
 
         cv2.imshow("YOLOv8", plot_frame)
