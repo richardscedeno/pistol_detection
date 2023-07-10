@@ -23,6 +23,6 @@ class DAO():
                 values = (data[0], data[1], data[2])
                 cursor.execute(query, values)
                 self.conn.commit()
-                # print('Detección registrada con éxito!')
+                print('Detección registrada con éxito!')
             except Exception as e:
                 print(e)

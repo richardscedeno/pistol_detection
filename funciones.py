@@ -1,5 +1,8 @@
 import os
 import glob
+from connect_db.conn import DAO
+
+dao = DAO()
 
 def data_detection(path_img, description):
     image = convert_to_binary(path_img)
@@ -35,5 +38,7 @@ def validate_route():
             last_img = list_images[-1]
             description = 'Gun Detected'
             data = data_detection(last_img, description)
+            # print(data)
+            dao.save_data(data)
 
 # validate_route()
