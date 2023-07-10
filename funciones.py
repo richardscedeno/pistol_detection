@@ -1,11 +1,16 @@
 import os
 import glob
 
+def convert_to_binary(path):
+    with open(path, 'rb') as file:
+        blob = file.read()
+    return blob
+
 def validate_route():
     path = './runs/detect/'
 
     if os.path.exists(path):
-        print('Exist!')
+        # print('Exist!')
 
         list_directory = os.listdir(path)
         list_directory.sort()
