@@ -44,3 +44,10 @@ class TelegramBot():
             return salida
         msg = f"Error code: {response.status_code}. Description: {response.text}"
         return Exception(msg)
+    
+    def send_message_to_group(self, message):
+        try:
+            return self.send_message(self._group, message)
+        except Exception as e:
+            print(e)
+        return None
