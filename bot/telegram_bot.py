@@ -14,3 +14,12 @@ class TelegramBot():
             self._token = params['token']
             self._group = params['group']
             self._channel = params['channel']
+
+    def get_me(self):
+        url = f"https://api.telegram.org/bot{self._token}/getMe"
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            salida = json.loads(response.text)
+            return salida
+        return None
