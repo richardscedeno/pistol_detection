@@ -52,6 +52,13 @@ class TelegramBot():
             print(e)
         return None
     
+    def send_message_to_channel(self, message):
+        try:
+            return self.send_message(self._channel, message)
+        except Exception as e:
+            print(e)
+        return None
+    
     def send_photo(self, chat_id, filename, caption):
         url = f"https://api.telegram.org/bot{self._token}/sendPhoto"
         data = {"chat_id": chat_id, "caption": caption}
@@ -67,13 +74,6 @@ class TelegramBot():
         description = error['description']
         msg = f"Error: {error_code}. Description: {description}"
         return Exception(msg)
-    
-    def send_message_to_channel(self, message):
-        try:
-            return self.send_message(self._channel, message)
-        except Exception as e:
-            print(e)
-        return None
     
     def send_photo_to_group(self, filename, caption):
         try:

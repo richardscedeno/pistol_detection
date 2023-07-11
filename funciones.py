@@ -1,8 +1,10 @@
 import os
 import glob
 from connect_db.conn import DAO
+from bot.telegram_bot import TelegramBot
 
 dao = DAO()
+telegram = TelegramBot()
 
 def data_detection(path_img, description):
     image = convert_to_binary(path_img)
@@ -25,7 +27,7 @@ def validate_route():
 
         list_directory = os.listdir(path)
         list_directory.sort()
-        print(list_directory)
+        # print(list_directory)
 
         path_images = f'{path}{list_directory[-1]}/crops/Gun/'
         if os.path.exists(path_images):
@@ -33,12 +35,13 @@ def validate_route():
 
             list_images = glob.glob(path_images + '*.jpg')
             list_images.sort(key=os.path.getctime)
-            print('\n'.join(list_images))
+            # print('\n'.join(list_images))
 
             last_img = list_images[-1]
             description = 'Gun Detected'
             data = data_detection(last_img, description)
-            # print(data)
+            # print(last_img)
             dao.save_data(data)
+            telegram.send_photo_to_channel(last_img, description)
 
 # validate_route()
