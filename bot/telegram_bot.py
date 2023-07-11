@@ -51,3 +51,10 @@ class TelegramBot():
         except Exception as e:
             print(e)
         return None
+    
+    def send_message_to_channel(self, message):
+        try:
+            return self.send_message(self._channel, message)
+        except Exception as e:
+            print(e)
+        return None
