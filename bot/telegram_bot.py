@@ -52,6 +52,22 @@ class TelegramBot():
             print(e)
         return None
     
+    def send_photo(self, chat_id, filename, caption):
+        url = f"https://api.telegram.org/bot{self._token}/sendPhoto"
+        data = {"chat_id": chat_id, "caption": caption}
+        files = {"photo": (filename, open(filename, 'rb'))}
+        response = requests.post(url, data=data, files=files)
+
+        if response.status_code == 200:
+            salida = json.loads(response.text)
+            return salida
+        
+        error = json.loads(response.text)
+        error_code = error['error_code']
+        description = error['description']
+        msg = f"Error: {error_code}. Description: {description}"
+        return Exception(msg)
+    
     def send_message_to_channel(self, message):
         try:
             return self.send_message(self._channel, message)
