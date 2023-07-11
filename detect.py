@@ -16,7 +16,7 @@ while cap.isOpened():
     frame_copy = imutils.resize(frame_copy, width=500)
 
     if success:
-        results = model(frame)
+        results = model(frame, save_crop=True)
 
         # Guardando la confidecialidad del tensor
         conf = results[0].boxes.conf
