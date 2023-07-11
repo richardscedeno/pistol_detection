@@ -23,3 +23,13 @@ class TelegramBot():
             salida = json.loads(response.text)
             return salida
         return None
+    
+    def get_updates(self):
+        url = f"https://api.telegram.org/bot{self._token}/getUpdates"
+        print(url)
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            salida = json.loads(response.text)
+            return salida
+        return None
