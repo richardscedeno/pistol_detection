@@ -33,3 +33,14 @@ class TelegramBot():
             salida = json.loads(response.text)
             return salida
         return None
+    
+    def send_message(self, chat_id, message):
+        url = f"https://api.telegram.org/bot{self._token}/sendMessage"
+        data = {"chat_id": chat_id, "text": message}
+        response = requests.post(url, data)
+
+        if response.status_code == 200:
+            salida = json.loads(response.text)
+            return salida
+        msg = f"Error code: {response.status_code}. Description: {response.text}"
+        return Exception(msg)
