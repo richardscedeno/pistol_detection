@@ -81,3 +81,10 @@ class TelegramBot():
         except Exception as e:
             print(e)
         return None
+    
+    def send_photo_to_channel(self, filename, caption):
+        try:
+            return self.send_photo(self._channel, filename, caption)
+        except Exception as e:
+            print(e)
+        return None
